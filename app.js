@@ -6,6 +6,12 @@ const app=express();
 
 
 
+
+// routes
+const customer_login=require('./routes/customer_login');
+
+
+
 app.use(bodyParser.json());
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -34,6 +40,7 @@ app.get('/getData',(req,res,next)=>{
     res.send(result);
   })
 })
+
 //  app.post('/',(req,res,next)=>{
 // const name= req.body.name;
 // res.send(name);
@@ -48,6 +55,8 @@ app.use((err,req,res,next)=>{
    }) 
 
 })
+
+app.use(customer_login);
 app.listen(3000);
 
 
