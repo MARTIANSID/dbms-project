@@ -1,6 +1,7 @@
 const express=require('express');
 const bodyParser=require('body-parser');
 const path=require('path');
+const db=require('./database/database');
 const app=express();
 
 
@@ -17,13 +18,30 @@ app.use((req, res, next) => {
   });
 
 app.get('/',(req,res,next)=>{
-    res.send('Hello')
+  let sql="INSERT INTO noob values(4,'omkar')";
+ db.query(sql,(err,result)=>{
+if(err){
+  throw err;
+}
+ })
+
+
+ 
 
 })
- app.post('/',(req,res,next)=>{
-const name= req.body.name;
-res.send(name);
+app.get('/getData',(req,res,next)=>{
+  let sql="SELECT * FROM noob";
+  db.query(sql,(err,result)=>{
+    if(err){
+      throw err;
+    }
+    res.send(result);
+  })
 })
+//  app.post('/',(req,res,next)=>{
+// const name= req.body.name;
+// res.send(name);
+// })
 
 
 app.use((err,req,res,next)=>{
