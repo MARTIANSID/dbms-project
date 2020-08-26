@@ -24,10 +24,6 @@ if(err){
   throw err;
 }
  })
-
-
- 
-
 })
 app.get('/getData',(req,res,next)=>{
   let sql="SELECT * FROM noob";
