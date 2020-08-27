@@ -1,26 +1,41 @@
 const db=require('../database/database');
 const uniqId=require('uniqid');
+const bycrypt=require('bcryptjs')
 
-exports.signup=(req,res,next)=>{
+exports.signup= async (req,res,next)=>{
 const phoneNumber=req.body.phoneNumber;
 const password=req.body.password;
 const userName=req.body.userName;
-const uniqueId=uniqId();
+const uniqueId=uniqId()
 
 
-// let sql="CREATE TABLE CUSTOMER(C_ID int(20) PRIMARY KEY,ADDRESS VARCHAR(40),NAME VARCHAR(30) NOT NULL,CONTACT_NO int NOT NULL)";
-// db.query(sql,(err,result)=>{
-//     if(err){
-//         throw err;
-//     }
-//     console.log('added user');
-// let sql=    `INSERT INTO CUSTOMER VALUES(123,'vellore','${userName}',${phoneNumber})`;
+
+const hashedPw = await bcrypt.hash(password, 12);
+let sql=""  //insert into table
 db.query(sql,(err,result)=>{
     if(err){
-        throw err;
+        const err=new Error("failed to add in database");
+
     }
-    console.log("added")
-    console.log(result)
+    console.log("added");
+
 })
+}
+exports.checkNumber=async(req,res,next)=>{
+
+}
+exports.login=async(req,res,next)=>{
+    const phoneNumber=req.body.phoneNumber;
+    const password=req.body.password;
+let sql =""
+db.query(sql,(err,result)=>{
+    if(err){
+        const err=new Error("failed to add in database");
+
+    }
+    console.log("added");
+
+}) //check in database for password;
+
 
 }

@@ -23,30 +23,6 @@ app.use((req, res, next) => {
     next();
   });
 
-app.get('/',(req,res,next)=>{
-  let sql="INSERT INTO noob values(4,'omkar')";
- db.query(sql,(err,result)=>{
-if(err){
-  throw err;
-}
- })
-})
-app.get('/getData',(req,res,next)=>{
-  let sql="SELECT * FROM noob";
-  db.query(sql,(err,result)=>{
-    if(err){
-      throw err;
-    }
-    res.send(result);
-  })
-})
-
-//  app.post('/',(req,res,next)=>{
-// const name= req.body.name;
-// res.send(name);
-// })
-
-
 app.use((err,req,res,next)=>{
    res.status(400).json({
 
