@@ -34,8 +34,3 @@ app.use((err,req,res,next)=>{
 
 app.use(customer_login);
 app.listen(3000);
-
-
-
-
-
