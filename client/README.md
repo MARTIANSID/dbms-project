@@ -1,4 +1,4 @@
-# delivery_app
+# client
 
 A new Flutter project.
 
