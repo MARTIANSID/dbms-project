@@ -6,8 +6,22 @@ class SellerLogin extends StatefulWidget {
 }
 
 class _SellerLoginState extends State<SellerLogin> {
+  final signUp = false;
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+        body: Form(
+            child: Center(
+      child: Container(
+        width: 200,
+        height: 500,
+        child: Column(
+          children: [
+            TextFormField(),
+            TextFormField(),
+          ],
+        ),
+      ),
+    )));
   }
 }

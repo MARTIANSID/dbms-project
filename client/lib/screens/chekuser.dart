@@ -11,26 +11,51 @@ class _CheckUserState extends State<CheckUser> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Container(
-        child: Column(
-          children: [
-            GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => BuyerLogin()),
-                  );
-                },
-                child: GestureDetector(
+      child: Scaffold(
+        backgroundColor: Colors.amber,
+        body: Center(
+          child: Container(
+            height: 250,
+            child: Column(
+              children: [
+                Text(
+                  "Buying And Selling App",
+                  style: TextStyle(fontSize: 40),
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                GestureDetector(
                     onTap: () {
                       Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => SellerLogin()));
+                        context,
+                        MaterialPageRoute(builder: (context) => BuyerLogin()),
+                      );
                     },
-                    child: Text("Buyer"))),
-            Text("Seller")
-          ],
+                    child: RaisedButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => SellerLogin()));
+                        },
+                        child: Text(
+                          "Buyer",
+                          style: TextStyle(fontSize: 20),
+                        ))),
+                SizedBox(
+                  height: 50,
+                ),
+                RaisedButton(
+                  onPressed: () {},
+                  child: Text(
+                    "Seller",
+                    style: TextStyle(fontSize: 20),
+                  ),
+                )
+              ],
+            ),
+          ),
         ),
       ),
     );
