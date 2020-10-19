@@ -36,6 +36,8 @@ exports.signUp = async (req, res, next) => {
     const address=req.body.address;
     const password = req.body.password;
     const  cid=uniqId();
+    console.log(password);
+    console.log("hjell");
   
     let sql = `INSERT INTO customer (name,password,phone,cid,address) VALUES ('${name}',${password},${phoneNumber},'${cid}','${address}')`;
     let token = jwt.sign(
@@ -57,30 +59,7 @@ exports.signUp = async (req, res, next) => {
   
 
 
-  exports.signUp = async (req, res, next) => {
-    const phoneNumber = req.body.phoneNumber;
-    const username = req.body.username;
-    const password = req.body.password;
-    const shopId = uniqId();
-  
-    let sql = `INSERT INTO sellerlogin (username,password,phone,shopId) VALUES ('${username}',${password},${phoneNumber},'${shopId}')`;
-    let token = jwt.sign(
-      { username: username, password: password, phoneNumber: phoneNumber },
-      "somesupersecretsecret",
-      { expiresIn: "100h" }
-    );
-  
-    db.query(sql, (err, result) => {
-      if (err) {
-        console.log(err);
-      } else {
-        res
-          .status(200)
-          .json({ message: "Data Added!!!!", token: token, user: result });
-      }
-    });
-  };
-  
+// 
   exports.login = async (req, res, next) => {
     const phoneNumber = req.body.phoneNumber;
     const password = req.body.password;
