@@ -7,8 +7,18 @@ const authController = require('../controllers/customer_login');
 const router = express.Router();
 
 router.post(
-  '/signup',
-  authController.signup
+  '/customer/phone',
+  authController.customerNumberCheck
 );
+
+router.post(
+  '/customer/signUp',
+  authController.signUp
+)
+
+router.post(
+  '/customer/login',
+  authController.login
+)
 
 module.exports=router
