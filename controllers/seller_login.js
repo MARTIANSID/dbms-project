@@ -4,13 +4,15 @@ const bycrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 //Number Check of Seller
 exports.sellerNumberCheck = async (req, res, next) => {
+  console.log(req.body);
   const phoneNumber = req.body.phoneNumber;
+  console.log(phoneNumber);
   try {
     let sql = `SELECT username FROM sellerlogin WHERE phone=${phoneNumber}`;
     db.query(sql, (err, result) => {
       if (err) {
-        const err = new Error("failed to add in database");
-        throw err;
+       
+        console.log(err);
       }
       if (result.length != 0) {
         res.status(200).json({ isRegistered: true });
@@ -27,7 +29,7 @@ exports.signUp = async (req, res, next) => {
   const password = req.body.password;
   const shopId = uniqId();
 
-  let sql = `INSERT INTO sellerlogin (username,password,phone,shopId) VALUES ('${username}',${password},${phoneNumber},'${shopId}')`;
+  let sql = `INSERT INTO sellerlogin (username,password,phone,shopId) VALUES ('${username}','${password}',${phoneNumber},'${shopId}')`;
   let token = jwt.sign(
     { username: username, password: password, phoneNumber: phoneNumber },
     "somesupersecretsecret",
@@ -40,7 +42,7 @@ exports.signUp = async (req, res, next) => {
     } else {
       res
         .status(200)
-        .json({ message: "Data Added!!!!", token: token, user: result });
+        .json({ message: "Data Added!!!!", token: token, user: result,authenticated:true });
     }
   });
 };
@@ -65,6 +67,7 @@ exports.login = async (req, res, next) => {
           user: result[0],
           message: "Authenticated",
           token: token,
+          authenticated:true,
         });
       } else {
         res.json({

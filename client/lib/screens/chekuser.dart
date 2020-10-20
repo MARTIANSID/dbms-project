@@ -47,7 +47,10 @@ class _CheckUserState extends State<CheckUser> {
                   height: 50,
                 ),
                 RaisedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => SellerLogin()));
+                  },
                   child: Text(
                     "Seller",
                     style: TextStyle(fontSize: 20),
