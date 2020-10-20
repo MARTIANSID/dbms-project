@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider.value(value: NewShop())
         ],
         child: MaterialApp(
+            routes: {'/logout': (context) => CheckUser()},
             debugShowCheckedModeBanner: false,
             title: 'Flutter Demo',
             theme: ThemeData(

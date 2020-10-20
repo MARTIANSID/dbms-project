@@ -9,6 +9,8 @@ class Product {
   int price;
   String company;
   int quantity;
+  String pno;
+  Product({this.company, this.name, this.pno, this.price, this.quantity});
 }
 
 class NewShop with ChangeNotifier {
@@ -102,6 +104,17 @@ class NewShop with ChangeNotifier {
       },
     );
     final responseBody = jsonDecode(response.body);
-    print(responseBody);
+    List prod = responseBody['data']
+        .map((i) => Product(
+              pno: i['pno'],
+              company: i['company'],
+              name: i['name'],
+              quantity: i['quantity'],
+              price: i['price'],
+            ))
+        .toList();
+    products = prod;
+    notifyListeners();
+    print(products);
   }
 }

@@ -42,7 +42,6 @@ class _ProductsState extends State<Products> {
               ), //this right here
 
               child: Form(
-                key: formKey,
                 child: Column(
                   children: [
                     TextFormField(
@@ -71,6 +70,10 @@ class _ProductsState extends State<Products> {
                               token: Provider.of<SellerLoginn>(context,
                                       listen: false)
                                   .token);
+                      await Provider.of<NewShop>(context, listen: false)
+                          .getProducts(
+                              Provider.of<SellerLoginn>(context, listen: false)
+                                  .token);
                     })
                   ],
                 ),
@@ -80,6 +83,15 @@ class _ProductsState extends State<Products> {
     }
 
     return Scaffold(
+      appBar: AppBar(
+        actions: [
+          GestureDetector(
+              onTap: () {
+                Navigator.popAndPushNamed(context, '/logout');
+              },
+              child: Icon(Icons.logout))
+        ],
+      ),
       body: FutureBuilder(
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
@@ -88,13 +100,20 @@ class _ProductsState extends State<Products> {
             );
           } else {
             return Container(
-              child: Center(
-                  child: Column(
-                children: [
-                  Text(Provider.of<NewShop>(context, listen: false).shopName),
-                  Text(Provider.of<NewShop>(context, listen: false).address)
-                ],
-              )),
+              child: ListView.builder(
+                itemBuilder: (context, i) {
+                  return Card(
+                    elevation: 4,
+                    child: Container(
+                      child: Text(Provider.of<NewShop>(context, listen: true)
+                          .products[i]
+                          .name),
+                    ),
+                  );
+                },
+                itemCount:
+                    Provider.of<NewShop>(context, listen: true).products.length,
+              ),
             );
           }
         },
@@ -102,6 +121,7 @@ class _ProductsState extends State<Products> {
             Provider.of<SellerLoginn>(context, listen: false).token),
       ),
       floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
         onPressed: () {
           takeProduct();
         },
