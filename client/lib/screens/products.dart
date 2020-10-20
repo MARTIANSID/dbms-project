@@ -12,21 +12,73 @@ class Products extends StatefulWidget {
 class _ProductsState extends State<Products> {
   bool isLoading = false;
   @override
-  // void initState() {
-  //   Future.delayed(Duration.zero, () async {
-  //     setState(() {
-  //       isLoading = true;
-  //     });
-  //     await Provider.of<NewShop>(context, listen: false)
-  //         .getShopInfo(Provider.of<SellerLoginn>(context, listen: false).token);
-  //   });
-  //   setState(() {
-  //     isLoading = false;
-  //   });
-  // }
+  void initState() {
+    Future.delayed(Duration.zero, () async {
+      setState(() {
+        isLoading = true;
+      });
+      await Provider.of<NewShop>(context, listen: false)
+          .getProducts(Provider.of<SellerLoginn>(context, listen: false).token);
+    });
+    setState(() {
+      isLoading = false;
+    });
+  }
+// @override
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController productName = TextEditingController();
+    TextEditingController price = TextEditingController();
+    TextEditingController quantity = TextEditingController();
+    TextEditingController company = TextEditingController();
+    void takeProduct() {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return Dialog(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0),
+              ), //this right here
+
+              child: Form(
+                key: formKey,
+                child: Column(
+                  children: [
+                    TextFormField(
+                      controller: productName,
+                      decoration: InputDecoration(hintText: 'Product Name'),
+                    ),
+                    TextFormField(
+                      controller: price,
+                      decoration: InputDecoration(hintText: 'Price'),
+                    ),
+                    TextFormField(
+                      controller: quantity,
+                      decoration: InputDecoration(hintText: 'Quantity'),
+                    ),
+                    TextFormField(
+                      controller: company,
+                      decoration: InputDecoration(hintText: 'Company'),
+                    ),
+                    RaisedButton(onPressed: () async {
+                      await Provider.of<NewShop>(context, listen: false)
+                          .addProduct(
+                              company: company.text,
+                              name: productName.text,
+                              price: int.parse(price.text),
+                              quantity: int.parse(quantity.text),
+                              token: Provider.of<SellerLoginn>(context,
+                                      listen: false)
+                                  .token);
+                    })
+                  ],
+                ),
+              ));
+        },
+      );
+    }
+
     return Scaffold(
       body: FutureBuilder(
         builder: (context, snapshot) {
@@ -50,7 +102,9 @@ class _ProductsState extends State<Products> {
             Provider.of<SellerLoginn>(context, listen: false).token),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          takeProduct();
+        },
       ),
     );
   }

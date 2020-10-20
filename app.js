@@ -6,7 +6,6 @@ const app=express();
 
 
 
-
 // routes
 const customer_login=require('./routes/customer_login');
 const seller_login=require('./routes/seller_login');

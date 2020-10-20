@@ -12,14 +12,14 @@ router.post(
     '/shop/make',
     isAuth,
     authController.makeShop
-
 )
 
-// router.post(
-//     '/shop/add/products',
-//     isAuth,
-//     authController
-// )
+
+router.post(
+    '/shop/add/products',
+    isAuth,
+    authController.addProduct
+)
 
 router.get(
     '/shop/details',
@@ -27,5 +27,10 @@ router.get(
     authController.getShopInfo
 )
 
+router.get(
+    '/shop/getProducts',
+    isAuth,
+    authController.getProducts
+)
 
 module.exports=router

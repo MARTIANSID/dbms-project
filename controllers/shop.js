@@ -65,7 +65,7 @@ exports.addProduct=async(req,res,next)=>{
     const name=req.body.name;
     const company=req.body.company;
     let prodId;
-    let sql=`SELECT prodId FROM shop WHERE shopId=${shopId}`;
+    let sql=`SELECT prodId FROM shop WHERE shopId='${shopId}'`;
     db.query(sql, (err, result) => {
         if (err) {
          
@@ -73,8 +73,9 @@ exports.addProduct=async(req,res,next)=>{
         }
      else{
         prodId=result[0].prodId;
+        console.log(prodId);
 
-        let sqll=`INSERT INTO shop (shopId,pno,quantity,price,name,prodId,company) VALUES ('${shopId}','${pno}','${quantity}','${price}','${name}','${prodId}','${company}')`;
+        let sqll=`INSERT INTO product (pno,quantity,price,name,prodId,company) VALUES ('${pno}','${quantity}','${price}','${name}','${prodId}','${company}')`;
 
         db.query(sqll, (err, result) => {
             if (err) {
@@ -92,4 +93,40 @@ exports.addProduct=async(req,res,next)=>{
       
      }
 })
+
+
+}
+
+exports.getProducts=async(req,res,next)=>{
+    const shopId=req.shopId;
+    let prodId;
+    let sql=`SELECT prodId FROM shop WHERE shopId='${shopId}'`;
+    db.query(sql, (err, result) => {
+        if (err) {
+         
+          console.log(err);
+        }
+     else{
+        prodId=result[0].prodId;
+        let sqll=`SELECT * FROM product WHERE prodId='${prodId}'`;
+        db.query(sqll, (err, result) => {
+            if (err) {
+             
+              console.log(err);
+            }
+         else{
+             res.status(200).json({
+                 message:"DATA ADDED!!",
+                 data:result
+
+    
+             })
+         }
+          });
+      
+
+        
+     }
+    })
+    
 }

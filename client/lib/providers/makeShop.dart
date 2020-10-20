@@ -4,11 +4,19 @@ import 'package:client/screens/makeShop.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 
+class Product {
+  String name;
+  int price;
+  String company;
+  int quantity;
+}
+
 class NewShop with ChangeNotifier {
   String category;
   String shopName;
   String address;
   int noOfProducts;
+  List<dynamic> products = [];
   Future<void> makeShop({
     String address,
     String shopName,
@@ -81,6 +89,18 @@ class NewShop with ChangeNotifier {
           'name': name,
           'company': company,
         }));
+    final responseBody = jsonDecode(response.body);
+    print(responseBody);
+  }
+
+  Future<void> getProducts(String token) async {
+    final response = await http.get(
+      'http://10.0.2.2:3000/shop/getProducts',
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': 'Bearer ' + token
+      },
+    );
     final responseBody = jsonDecode(response.body);
     print(responseBody);
   }
