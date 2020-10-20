@@ -1,4 +1,6 @@
 import 'package:client/providers/seller_auth.dart';
+import 'package:client/screens/makeShop.dart';
+import 'package:client/screens/products.dart';
 import 'package:client/screens/sellerPage.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -86,7 +88,7 @@ class _SellerLoginState extends State<SellerLogin> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => SellerPage()));
+                                    builder: (context) => Products()));
                           }
                         },
                         child: Text("Signin"),
@@ -105,7 +107,7 @@ class _SellerLoginState extends State<SellerLogin> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => SellerPage()));
+                                    builder: (context) => MakeShop()));
                           }
                         },
                         child: Text("SignUp"),
