@@ -15,5 +15,17 @@ router.post(
 
 )
 
+// router.post(
+//     '/shop/add/products',
+//     isAuth,
+//     authController
+// )
+
+router.get(
+    '/shop/details',
+    isAuth,
+    authController.getShopInfo
+)
+
 
 module.exports=router

@@ -33,15 +33,19 @@ class _MakeShopState extends State<MakeShop> {
                 children: [
                   TextFormField(
                     controller: address,
+                    decoration: InputDecoration(hintText: 'address'),
                   ),
                   TextFormField(
                     controller: shopName,
+                    decoration: InputDecoration(hintText: 'Shop Name'),
                   ),
                   TextFormField(
                     controller: category,
+                    decoration: InputDecoration(hintText: 'Category'),
                   ),
                   TextFormField(
                     controller: noOfProducts,
+                    decoration: InputDecoration(hintText: 'No Of Products'),
                   ),
                   RaisedButton(onPressed: () async {
                     await Provider.of<NewShop>(context, listen: false).makeShop(
