@@ -37,47 +37,48 @@ class _ProductsState extends State<Products> {
         context: context,
         builder: (BuildContext context) {
           return Dialog(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20.0),
-              ), //this right here
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20.0),
+            ), //this right here
 
-              child: Form(
-                child: Column(
-                  children: [
-                    TextFormField(
-                      controller: productName,
-                      decoration: InputDecoration(hintText: 'Product Name'),
-                    ),
-                    TextFormField(
-                      controller: price,
-                      decoration: InputDecoration(hintText: 'Price'),
-                    ),
-                    TextFormField(
-                      controller: quantity,
-                      decoration: InputDecoration(hintText: 'Quantity'),
-                    ),
-                    TextFormField(
-                      controller: company,
-                      decoration: InputDecoration(hintText: 'Company'),
-                    ),
-                    RaisedButton(onPressed: () async {
-                      await Provider.of<NewShop>(context, listen: false)
-                          .addProduct(
-                              company: company.text,
-                              name: productName.text,
-                              price: int.parse(price.text),
-                              quantity: int.parse(quantity.text),
-                              token: Provider.of<SellerLoginn>(context,
-                                      listen: false)
-                                  .token);
-                      await Provider.of<NewShop>(context, listen: false)
-                          .getProducts(
-                              Provider.of<SellerLoginn>(context, listen: false)
-                                  .token);
-                    })
-                  ],
-                ),
-              ));
+            child: Form(
+              child: Column(
+                children: [
+                  TextFormField(
+                    controller: productName,
+                    decoration: InputDecoration(hintText: 'Product Name'),
+                  ),
+                  TextFormField(
+                    controller: price,
+                    decoration: InputDecoration(hintText: 'Price'),
+                  ),
+                  TextFormField(
+                    controller: quantity,
+                    decoration: InputDecoration(hintText: 'Quantity'),
+                  ),
+                  TextFormField(
+                    controller: company,
+                    decoration: InputDecoration(hintText: 'Company'),
+                  ),
+                  RaisedButton(onPressed: () async {
+                    await Provider.of<NewShop>(context, listen: false)
+                        .addProduct(
+                            company: company.text,
+                            name: productName.text,
+                            price: int.parse(price.text),
+                            quantity: int.parse(quantity.text),
+                            token: Provider.of<SellerLoginn>(context,
+                                    listen: false)
+                                .token);
+                    await Provider.of<NewShop>(context, listen: false)
+                        .getProducts(
+                            Provider.of<SellerLoginn>(context, listen: false)
+                                .token);
+                  })
+                ],
+              ),
+            ),
+          );
         },
       );
     }
@@ -86,10 +87,11 @@ class _ProductsState extends State<Products> {
       appBar: AppBar(
         actions: [
           GestureDetector(
-              onTap: () {
-                Navigator.popAndPushNamed(context, '/logout');
-              },
-              child: Icon(Icons.logout))
+            onTap: () {
+              Navigator.popAndPushNamed(context, '/logout');
+            },
+            child: Icon(Icons.logout),
+          )
         ],
       ),
       body: FutureBuilder(
@@ -102,7 +104,7 @@ class _ProductsState extends State<Products> {
             return Container(
               child: ListView.builder(
                 itemBuilder: (context, i) {
-                  return Card(
+                  return Card( 
                     elevation: 4,
                     child: Container(
                       child: Text(Provider.of<NewShop>(context, listen: true)
