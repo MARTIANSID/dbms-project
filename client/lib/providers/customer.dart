@@ -7,14 +7,14 @@ class Shop {
   String shopName;
   String address;
   String category;
-  String noOfproducts;
+  int noOfproducts;
   Shop({this.shopName, this.address, this.category, this.noOfproducts});
 }
 
 class CustomerView with ChangeNotifier {
   List<dynamic> shops = [];
   Future<void> getAllShops() async {
-    final response = await http.post(
+    final response = await http.get(
       'http://10.0.2.2:3000/shops/all',
     );
     final responseBody = jsonDecode(response.body);
