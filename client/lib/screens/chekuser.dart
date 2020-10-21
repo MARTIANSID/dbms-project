@@ -1,3 +1,4 @@
+import 'package:client/screens/allShops.dart';
 import 'package:client/screens/buyer_login.dart';
 import 'package:client/screens/seller_login.dart';
 import 'package:flutter/material.dart';
@@ -25,24 +26,15 @@ class _CheckUserState extends State<CheckUser> {
                 SizedBox(
                   height: 30,
                 ),
-                GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => BuyerLogin()),
-                      );
+                RaisedButton(
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => AllShops()));
                     },
-                    child: RaisedButton(
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => SellerLogin()));
-                        },
-                        child: Text(
-                          "Buyer",
-                          style: TextStyle(fontSize: 20),
-                        ))),
+                    child: Text(
+                      "Buyer",
+                      style: TextStyle(fontSize: 20),
+                    )),
                 SizedBox(
                   height: 50,
                 ),
