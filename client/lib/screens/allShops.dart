@@ -26,7 +26,7 @@ class _AllShopsState extends State<AllShops> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: isLoading
-            ? CircularProgressIndicator()
+            ? Center(child: CircularProgressIndicator())
             : ListView.builder(
                 itemCount: Provider.of<CustomerView>(context, listen: false)
                     .shops
