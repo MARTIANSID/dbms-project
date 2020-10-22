@@ -10,6 +10,7 @@ const app=express();
 const customer_login=require('./routes/customer_login');
 const seller_login=require('./routes/seller_login');
 const shop=require('./routes/shop')
+const customer=require('./routes/customerShop')
 
 
 
@@ -35,5 +36,6 @@ app.use((err,req,res,next)=>{
 
 app.use(customer_login);
 app.use(seller_login);
-app.use(shop)
+app.use(shop);
+app.use(customer);
 app.listen(3000);

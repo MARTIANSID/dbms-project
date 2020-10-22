@@ -1,7 +1,9 @@
+import 'package:client/providers/customer.dart';
 import 'package:client/providers/makeShop.dart';
 import 'package:client/providers/seller_auth.dart';
 import 'package:client/screens/chekuser.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -15,7 +17,8 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
         providers: [
           ChangeNotifierProvider.value(value: SellerLoginn()),
-          ChangeNotifierProvider.value(value: NewShop())
+          ChangeNotifierProvider.value(value: NewShop()),
+          ChangeNotifierProvider.value(value: CustomerView())
         ],
         child: MaterialApp(
             routes: {'/logout': (context) => CheckUser()},
