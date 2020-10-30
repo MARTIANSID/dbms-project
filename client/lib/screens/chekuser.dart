@@ -1,5 +1,5 @@
 import 'package:client/screens/allShops.dart';
-import 'package:client/screens/buyer_login.dart';
+// import 'package:client/screens/buyer_login.dart';
 import 'package:client/screens/seller_login.dart';
 import 'package:flutter/material.dart';
 

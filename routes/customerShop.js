@@ -10,7 +10,21 @@ router.get(
 
 
 
+router.post(
+    '/shop/id',
+    authController.getShopById
+)
 
+router.post(
+    '/product',
+    authController.getProducts
+)
+
+router.post(
+    '/shopOwner',
+    authController.getShopOwner
+
+)
 
 
 

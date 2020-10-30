@@ -105,9 +105,24 @@ class _ProductsState extends State<Products> {
                   return Card(
                     elevation: 4,
                     child: Container(
-                      child: Text(Provider.of<NewShop>(context, listen: true)
-                          .products[i]
-                          .name),
+                      child: Column(
+                        children: [
+                          Text("Product Name"),
+                          Text(Provider.of<NewShop>(context, listen: true)
+                              .products[i]
+                              .name),
+                          Text("Price"),
+                          Text((Provider.of<NewShop>(context, listen: true)
+                                  .products[i]
+                                  .price)
+                              .toString()),
+                          Text("Quantity"),
+                          Text((Provider.of<NewShop>(context, listen: true)
+                                  .products[i]
+                                  .quantity)
+                              .toString()),
+                        ],
+                      ),
                     ),
                   );
                 },

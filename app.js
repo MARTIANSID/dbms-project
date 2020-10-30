@@ -11,6 +11,7 @@ const customer_login=require('./routes/customer_login');
 const seller_login=require('./routes/seller_login');
 const shop=require('./routes/shop')
 const customer=require('./routes/customerShop')
+const review=require('./routes/review')
 
 
 
@@ -38,4 +39,5 @@ app.use(customer_login);
 app.use(seller_login);
 app.use(shop);
 app.use(customer);
+app.use(review)
 app.listen(3000);

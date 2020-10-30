@@ -1,4 +1,5 @@
 import 'package:client/providers/customer.dart';
+import 'package:client/screens/customerShop.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -32,20 +33,35 @@ class _AllShopsState extends State<AllShops> {
                     .shops
                     .length,
                 itemBuilder: (context, i) {
-                  return Card(
-                    child: Container(
-                      child: Column(
-                        children: [
-                          Text(Provider.of<CustomerView>(context, listen: false)
-                              .shops[i]
-                              .shopName),
-                          Text(Provider.of<CustomerView>(context, listen: false)
-                              .shops[i]
-                              .address),
-                          Text(Provider.of<CustomerView>(context, listen: false)
-                              .shops[i]
-                              .category)
-                        ],
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => CustomerShop(
+                                  shopId: Provider.of<CustomerView>(context,
+                                          listen: false)
+                                      .shops[i]
+                                      .shopId)));
+                    },
+                    child: Card(
+                      child: Container(
+                        child: Column(
+                          children: [
+                            Text(Provider.of<CustomerView>(context,
+                                    listen: false)
+                                .shops[i]
+                                .shopName),
+                            Text(Provider.of<CustomerView>(context,
+                                    listen: false)
+                                .shops[i]
+                                .address),
+                            Text(Provider.of<CustomerView>(context,
+                                    listen: false)
+                                .shops[i]
+                                .category)
+                          ],
+                        ),
                       ),
                     ),
                   );
