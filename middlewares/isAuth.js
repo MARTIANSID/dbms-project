@@ -23,3 +23,6 @@ module.exports = (req, res, next) => {
   req.shopId = decodedToken.shopId;
   next();
 };
+
+
+// Reciving token from header then verifying  it and decoding to get the shopId
