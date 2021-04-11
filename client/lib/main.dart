@@ -15,19 +15,21 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-        providers: [
-          ChangeNotifierProvider.value(value: SellerLoginn()),
-          ChangeNotifierProvider.value(value: NewShop()),
-          ChangeNotifierProvider.value(value: CustomerView())
-        ],
-        child: MaterialApp(
-            routes: {'/logout': (context) => CheckUser()},
-            debugShowCheckedModeBanner: false,
-            title: 'Flutter Demo',
-            theme: ThemeData(
-              primarySwatch: Colors.blue,
-              visualDensity: VisualDensity.adaptivePlatformDensity,
-            ),
-            home: CheckUser()));
+      providers: [
+        ChangeNotifierProvider.value(value: SellerLoginn()),
+        ChangeNotifierProvider.value(value: NewShop()),
+        ChangeNotifierProvider.value(value: CustomerView())
+      ],
+      child: MaterialApp(
+        routes: {'/logout': (context) => CheckUser()},
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+        ),
+        home: CheckUser(),
+      ),
+    );
   }
 }

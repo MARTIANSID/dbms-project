@@ -28,43 +28,61 @@ class _AllShopsState extends State<AllShops> {
     return Scaffold(
         body: isLoading
             ? Center(child: CircularProgressIndicator())
-            : ListView.builder(
-                itemCount: Provider.of<CustomerView>(context, listen: false)
-                    .shops
-                    .length,
-                itemBuilder: (context, i) {
-                  return GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => CustomerShop(
-                                  shopId: Provider.of<CustomerView>(context,
+            : Container(
+                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                child: ListView.builder(
+                    itemCount: Provider.of<CustomerView>(context, listen: false)
+                        .shops
+                        .length,
+                    itemBuilder: (context, i) {
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => CustomerShop(
+                                      shopId: Provider.of<CustomerView>(context,
+                                              listen: false)
+                                          .shops[i]
+                                          .shopId)));
+                        },
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15)),
+                          elevation: 8,
+                          child: Container(
+                            child: Column(
+                              children: [
+                                Text(
+                                  Provider.of<CustomerView>(context,
                                           listen: false)
                                       .shops[i]
-                                      .shopId)));
-                    },
-                    child: Card(
-                      child: Container(
-                        child: Column(
-                          children: [
-                            Text(Provider.of<CustomerView>(context,
-                                    listen: false)
-                                .shops[i]
-                                .shopName),
-                            Text(Provider.of<CustomerView>(context,
-                                    listen: false)
-                                .shops[i]
-                                .address),
-                            Text(Provider.of<CustomerView>(context,
-                                    listen: false)
-                                .shops[i]
-                                .category)
-                          ],
+                                      .shopName,
+                                  style: TextStyle(
+                                      fontSize: 30, color: Colors.blue),
+                                ),
+                                SizedBox(height: 3),
+                                Text(
+                                  Provider.of<CustomerView>(context,
+                                          listen: false)
+                                      .shops[i]
+                                      .address,
+                                  style: TextStyle(
+                                      color: Colors.indigo, fontSize: 22),
+                                ),
+                                Text(
+                                  Provider.of<CustomerView>(context,
+                                          listen: false)
+                                      .shops[i]
+                                      .category,
+                                  style: TextStyle(fontSize: 18),
+                                )
+                              ],
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                  );
-                }));
+                      );
+                    }),
+              ));
   }
 }

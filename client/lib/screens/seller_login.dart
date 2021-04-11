@@ -56,6 +56,10 @@ class _SellerLoginState extends State<SellerLogin> {
                     // if (signUp) TextFormField(),
                     if (!registered && !signUp)
                       RaisedButton(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                        color: Colors.black,
                         onPressed: () async {
                           print(phoneNumber.text);
                           registered = await Provider.of<SellerLoginn>(context,
@@ -72,7 +76,10 @@ class _SellerLoginState extends State<SellerLogin> {
                             });
                           }
                         },
-                        child: Text('Submit'),
+                        child: Text(
+                          'Submit',
+                          style: TextStyle(color: Colors.white, fontSize: 15),
+                        ),
                       ),
                     if (registered)
                       RaisedButton(

@@ -25,14 +25,14 @@ class _CheckUserState extends State<CheckUser> {
                     style: TextStyle(fontSize: 35),
                   ),
                   SizedBox(
-                    height: 30,
+                    height: 70,
                   ),
                   Container(
                     height: 40,
                     width: 100,
                     child: RaisedButton(
-                        splashColor: Colors.white,
-                        color: Colors.black,
+                        splashColor: Colors.indigo,
+                        color: Colors.black87,
                         elevation: 5,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(40),
@@ -86,13 +86,15 @@ class _CheckUserState extends State<CheckUser> {
 class MyPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-    Paint sastaDesign = Paint()..color = Colors.amber;
+    Paint sastaDesign = Paint()..color = Colors.indigo;
 
     Paint sidBhaagGaya = Paint()
       ..shader = RadialGradient(
         colors: [
+          Colors.blue[100],
           Colors.blue[200],
-          Colors.blue,
+          Colors.blue[100],
+          Colors.blue[200],
         ],
       ).createShader(Rect.fromCircle(
         center: Offset(0, 0),
@@ -109,7 +111,7 @@ class MyPainter extends CustomPainter {
       ..lineTo(size.width, size.height / 2.5)
       ..lineTo(size.width, 0);
 
-    canvas.drawPath(myPath, sidBhaagGaya);
+    //canvas.drawPath(myPath, sidBhaagGaya);
   }
 
   @override
